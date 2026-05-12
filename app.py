@@ -77,8 +77,11 @@ def user_input_features():
 input_df = user_input_features()
 
 # --- MAIN DASHBOARD AREA ---
-st.title("🏙️ BarakAI: Интеллектуальная оценка")
-
+st.markdown("""
+    <h1 style='text-align: left; hyphens: none; word-break: keep-all;'>
+        🏙️ BarakAI: Интеллектуальная оценка
+    </h1>
+""", unsafe_allow_html=True)
 # --- PREDICTION AND METRICS ---
 # Creating columns for a clean metric display
 col_res1, col_res2, col_res3 = st.columns([2, 1, 1])
