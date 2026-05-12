@@ -77,9 +77,8 @@ def user_input_features():
 input_df = user_input_features()
 
 # --- MAIN DASHBOARD AREA ---
-# Custom title with slightly smaller font size to fit on one line
 st.markdown("""
-    <h1 style='font-size: 2.5rem; white-space: nowrap;'>
+    <h1 style='text-align: left; hyphens: none; word-break: keep-all;'>
         🏙️ BarakAI: Интеллектуальная оценка
     </h1>
 """, unsafe_allow_html=True)
