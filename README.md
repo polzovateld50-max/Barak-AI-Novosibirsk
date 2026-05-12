@@ -6,6 +6,8 @@
 ![alt text](https://img.shields.io/badge/Streamlit-Web%20App-red.svg)
 
 ![alt text](https://img.shields.io/badge/Machine%20Learning-Regression-brightgreen.svg)
+
+
 📌 About the Project
 RealtyAI is an end-to-end analytical web service designed to predict the market value of apartments in Novosibirsk, Russia. Empowered by state-of-the-art Machine Learning algorithms, it provides users and investors with highly accurate price estimations based on a complex set of architectural and geospatial parameters.
 This project covers the full Data Science lifecycle: from realistic synthetic data generation and feature engineering to model training and cloud deployment.
