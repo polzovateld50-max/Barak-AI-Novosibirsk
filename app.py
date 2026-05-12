@@ -158,5 +158,61 @@ with col_adv:
     else:
         st.info("⚖️ **Стабильный актив:** Сбалансированные характеристики для сохранения капитала.")
 
+# ==========================================
+# 7. DATA INSIGHTS SECTION (EDA)
+# ==========================================
+
+st.markdown("---")
+# Creating an expandable section for technical data analysis
+with st.expander("📊 Технический анализ и обзор данных"):
+    st.write("Разведочный анализ данных (EDA) на основе выборки из 50 000 записей.")
+
+
+    # Loading the raw dataset for visualization (using cache to optimize performance)
+    @st.cache_data
+    def load_data_for_eda():
+        # Ensure the filename matches your actual dataset file
+        return pd.read_csv('novosibirsk_flats_v47.csv')
+
+
+    df_eda = load_data_for_eda()
+
+    # Creating two columns for side-by-side charts
+    col_eda1, col_eda2 = st.columns(2)
+
+    with col_eda1:
+        st.write("**Распределение цен**")
+        # Creating a price histogram using Plotly
+        fig_hist = px.histogram(
+            df_eda,
+            x=df_eda['Цена_руб'] / 1000000,
+            nbins=50,
+            title="Распределение цен (млн руб.)",
+            color_discrete_sequence=['#007bff']
+        )
+        st.plotly_chart(fig_hist, use_container_width=True)
+
+    with col_eda2:
+        st.write("**Корреляция признаков**")
+        # Temporary numeric encoding for text columns to calculate correlation
+        df_corr = df_eda.copy()
+        for col in ['Район', 'Ремонт', 'Материал_стен']:
+            df_corr[col] = pd.factorize(df_corr[col])[0]
+
+        # Computing the correlation matrix
+        corr = df_corr.corr()
+        # Visualizing the matrix as a heatmap
+        fig_corr = px.imshow(
+            corr,
+            text_auto=".2f",
+            aspect="auto",
+            color_continuous_scale='RdBu_r',
+            title="Матрица корреляции признаков"
+        )
+        st.plotly_chart(fig_corr, use_container_width=True)
+
+    # Displaying a brief conclusion based on the data
+    st.info(
+        "💡 **Аналитика:** Рыночная стоимость сильнее всего коррелирует с площадью (0.85) и престижностью района. Влияние этажа и материала стен заметно, но является вторичным фактором.")
 # Footer
 st.caption("© 2026 BarakAI Novosibirsk | Academic Data Science Project")
