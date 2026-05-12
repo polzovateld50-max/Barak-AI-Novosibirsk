@@ -77,8 +77,24 @@ def user_input_features():
 input_df = user_input_features()
 
 # --- MAIN DASHBOARD AREA ---
+# --- RESPONSIVE TITLE ---
+# Using custom HTML/CSS to ensure the title looks great on both Desktop and Mobile
 st.markdown("""
-    <h1 style='text-align: left; hyphens: none; word-break: keep-all;'>
+    <style>
+    .responsive-title {
+        /* font-size: clamp(MIN, PREFERRED, MAX) - magic for all screens */
+        font-size: clamp(1.8rem, 4vw, 3rem); 
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        color: white;
+        /* Prevents the long word from breaking with a hyphen */
+        hyphens: none;
+        word-break: keep-all;
+        overflow-wrap: normal;
+    }
+    </style>
+    <h1 class="responsive-title">
         🏙️ BarakAI: Интеллектуальная оценка
     </h1>
 """, unsafe_allow_html=True)
